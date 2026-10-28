@@ -1,0 +1,31 @@
+{
+  "connections": 8,
+  "completed": 5,
+  "success_rate": 62.5,
+  "bytes_up": 89088,
+  "bytes_down": 89088,
+  "bytes_total": 178176,
+  "latency_sample": 5,
+  "avg_duration_ms": 20.453,
+  "p50_duration_ms": 20.348,
+  "p95_duration_ms": 23.551,
+  "p99_duration_ms": 23.551,
+  "peak_concurrency": 6,
+  "reasons": {
+    "completed": 5,
+    "idle_timeout": 1,
+    "over_limit": 2
+  },
+  "top_clients": [
+    {
+      "client_ip": "127.0.0.1",
+      "connections": 8
+    }
+  ],
+  "window_seconds": 0.028,
+  "throughput_kb_s": 6214.3,
+  "client_latency_ms": {
+    "min": 0.268,
+    "max": 16.668
+  }
+}
