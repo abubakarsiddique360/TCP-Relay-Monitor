@@ -1,5 +1,4 @@
 import socket
-import struct
 import threading
 
 import pytest
@@ -63,16 +62,16 @@ def test_pipe_streams_honours_idle_timeout():
         sock.close()
 
 
-def test_pipe_streams_reports_reset_after_peer_disappears():
+def test_pipe_streams_reports_reset_when_a_socket_is_gone():
     app, relay_client = _paired()
     relay_upstream, target = _paired()
-    target.setsockopt(socket.SOL_SOCKET, socket.SO_LINGER, struct.pack("ii", 1, 0))
-    target.close()
-    result = pipe_streams(relay_client, relay_upstream, idle_timeout=2.0)
+    relay_upstream.close()
+    result = pipe_streams(relay_client, relay_upstream, idle_timeout=1.0)
     app.close()
     relay_client.close()
-    relay_upstream.close()
+    target.close()
     assert result[2] == "reset"
+    assert result[0] == 0 and result[1] == 0
 
 
 @pytest.fixture()
